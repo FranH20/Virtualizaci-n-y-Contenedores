@@ -18,7 +18,7 @@
 		\title{\huge MAQUINAS VIRTUALES VS CONTENEDORES}
 		
 		\author{Huichi Contreras, Franklin Carlos            (2016056193)}
-		\author{Gonzales Cave, Angel Gabriel                 (2017057861)}
+		\author{Huillca Umpiri, Willian              		  (2015053793)}
 		\author{Condori Quispe, Yhónn Joel	         	   (2016056358)} 
 		\author{Pastor Mendoza, José Edilberto              (2016055237)} 
 		\address{Escuela Profesional de Ingeniería de Sistemas}
@@ -28,7 +28,9 @@
 %% ABSTRACT --------------------------------------------------------------------------------------------------------------------
 
 		\begin{abstract}
-Lorem Ipsus
+In this article we will learn concepts, differences and uses of virtualization and containers, this will allow us to choose the most recommendable option for the performance of a system that is being developed or to make changes in it.\\
+\textbf{Keywords:}  \\
+ virtualization, containers, tools, processes, simulation, resources.\\
 
 		\end{abstract}
 
@@ -39,7 +41,13 @@ Lorem Ipsus
 %% RESUMEN ---------------------------------------------------------------------------------------------------------------------
 
 \section{Resumen}
-Lorem Ipsus
+
+
+En este artículo aprenderemos conceptos, diferencias y usos de la virtualizacion y contenedores, esto nos permitirá elegir la opción más recomendable para el desempeño de un sistema que se esté desarrollando o para realizar cambios en él.\\
+
+\textbf{Palabras clave:}   \\
+virtualizacion, contenedores, herramientas, simulacion, procesos, recursos.\\
+
 
 
 %% ----------------------------------------------------------------------------------------------------------------------------------
@@ -49,7 +57,10 @@ Lorem Ipsus
 
 \section{Introducción} 
 
-Lorem Ipsus
+Antes de ahondar en el concepto de contenedores, volvamos unos años atrás para recordar el nacimiento de la virtualización. A medida que el hardware se hacía más poderoso nos encontramos con que el software no ocupaba todas las capacidades de la maquina física donde se encontraba siendo ejecutada (en muchos casos ni siquiera una fracción de estos recursos). Dado lo anterior se crearon recursos “virtuales” para simular el hardware base sobre el cual se ejecuta el software, permitiendo que múltiples aplicaciones puedan ser ejecutadas al mismo tiempo, cada una usando una fracción de los recursos del hardware físico disponible. A a esta “simulación” que permite de compartir recursos la denominamos comúnmente “virtualización”.
+
+La mayoría de nosotros cuando escuchamos el concepto de virtualización pensamos inmediatamente en máquinas virtuales, pero es importante entender que este es solo un tipo de virtualización en el cual se habilita un sistema operativo el cual tiene la ilusión de que posee recursos dedicados para operar. Entendiendo lo anterior podemos ahora definir a los Contenedores como creadores de la percepción de un ambiente aislado exclusivo para la aplicación mientras que en la virtualización “tradicional” de máquinas virtuales la aplicación se ejecuta en un sistema operativo virtualizado donde convive con otros aplicativos.
+
 
 %% ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -83,6 +94,41 @@ Como se ha podido apreciar en los tipos de virtualizacion presentados anteriorme
 \item Garantiza la continuidad del negocio y la recuperacion ante desastres.
 \item Simplifica la gestion del centro de datos.
 \end{itemize}
+
+\subsection{Contenedores}
+\par Un contenedor de software se puede considerar como una aplicación para el servidor. Estos se encargan de proporcionar a las aplicaciones archivos, variables y biblotecas que sean necesarios para ejecutarse y maximiza su portabilidad.
+Para poder instalar una aplicación, el contenedor se carga en el ordenador en un formato portable o imagen (Image) que incluye todos los datos necesarios para su funcionamiento y, en el ordenador, se inicia en un entorno virtual. {know}
+Los contenedores permiten que estos equipos de desarrollo alcancen una eficiencia muy alta en la entrega y el despliegue de software, al solucionar muchos de los retos que presenta la virtualización tradicional.
+\par Beneficios:
+	\begin{itemize}
+		\item Ahorro de espacio y consumo. No se tendrá la necesidad de crear maquinas virtuales en las que instalarlas.
+		\item Reutilización. Se puede crear tantas instancias como necesitemos, destruirlas y reproducir el entorno inicial.
+		\item No "ensucia". No se tendrá que instalar dentro de nuestro equipo con la problemática que ello conlleva en algunos casos.
+		\item Compartir. Estas imágenes las podremos distribuir comodamente entre los componentes de nuestro equipo.
+		\item Se obtiene mayor modularidad. El desarrollo con contenedores es ideal para un enfoque basado en microservicios para el diseño de aplicaciones.{campus}
+	\end{itemize}
+\par Ventajas de los contenedores: \\
+Los contenedores de aplicaciones “empaquetan” los recursos necesarios para el funcionamiento de una aplicación sin embargo, las mayores ventajas de tales contenedores radican, sobre todo, en la gestión y en la automatización de software basado en contenedores.{know}
+\begin{itemize}
+		\item Instalación más sencilla: los contenedores de software se inician a partir de imágenes o representaciones portables de un contenedor, incluyendo un programa y todos los componentes requeridos. De esta manera se compensan las diferencias entre sistemas operativos. Su instalación se reduce a la introducción de una línea de comando.
+		\item Independiente de la plataforma: las imágenes se pueden transportar cómodamente de un sistema a otro y se caracterizan por una considerable independencia de la plataforma. Lo único que se necesita para iniciar un contenedor desde una imagen es un sistema operativo que soporte contenedores.
+		\item Pérdidas por virtualización mínimas: con un Linux y Docker container, la instalación de contenedores requiere alrededor de 100 MB y unos pocos minutos, aunque no es solo esto a lo que se oponen los administradores de sistemas. Mientras que la virtualización de hardware trae consigo una pérdida de rendimiento para el hipervisor y otros sistemas operativos, los contenedores, al prescindir de todo esto, reducen esta pérdida al mínimo.
+		\item Aplicaciones aisladas: cada programa funciona independientemente de otros contenedores, de forma que aplicaciones con requerimientos opuestos pueden funcionar en paralelo en el mismo sistema.
+		\item Administración y automatización unitarias: debido a que en una plataforma como Docker todos los contenedores son gestionados con las mismas herramientas, es posible automatizar todas las aplicaciones de manera centralizada. Por esto, estas soluciones están indicadas sobre todo para arquitecturas de servidor en las cuales los componentes están distribuidos en varios servidores, de forma que se carga con los pesos de instancias diferentes. En estos ámbitos de aplicación, el Docker container dispone de herramientas con las cuales configurar automatismos. Esto posibilita, por ejemplo, iniciar instancias nuevas de forma automática en momentos puntuales de sobrecarga. \\
+\end{itemize}
+\par Al final, el uso de los contenedores es muy conveniente, tambien puede traer un nivel bajo de seguridad estariamos dejando de usar sistemas operativos separados. Pues, los contenedores no son tan herméticos como las máquinas virtuales con sistema operativo propio. En consecuencia, aunque los contenedores constituyen una alternativa para la virtualización de hardware, de momento no la pueden sustituir por completo.\\
+
+%% ----------------------------------------------------------------------------------------------------------------------------------
+
+%% CONCLUSIONES------------------------------------------------------------------------------------------------------------
+\section{Conclusiones}\label{sec:6}
+
+
+\begin{itemize}
+	\item Los Contenedores son un método de virtualización de un sistema operativo que permite ejecutar una aplicación junto con sus elementos dependientes, en un ambiente aislado e independiente.
+	\item La virtualizacion lo que hace es crear a traves del software una version virtual de un recurso, como virtualiza de manera completa un software, consume los recursos del hardware tal como lo hicieramos en una maquina física reduciendo el rendimiento y el performance de la maquina que aloja a la virtual
+\end{itemize}
+
 
 %% ----------------------------------------------------------------------------------------------------------------------------------
 
