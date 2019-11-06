@@ -10,6 +10,7 @@
 \usepackage{natbib} 
 \usepackage{amsmath} 
 \usepackage{amssymb} 
+\usepackage{graphicx}
 
 \begin{document}
 	
@@ -19,8 +20,7 @@
 		
 		\author{Huichi Contreras, Franklin Carlos            (2016056193)}
 		\author{Huillca Umpiri, Willian              		  (2015053793)}
-		\author{Condori Quispe, Yhónn Joel	         	   (2016056358)} 
-		\author{Pastor Mendoza, José Edilberto              (2016055237)} 
+		\author{Robles Flores, Anthony Richard              (2016056192)} 
 		\address{Escuela Profesional de Ingeniería de Sistemas}
 		\address{Universidad Privada de Tacna}
 		\address{Tacna, Perú}
@@ -120,6 +120,113 @@ Los contenedores de aplicaciones “empaquetan” los recursos necesarios para e
 
 %% ----------------------------------------------------------------------------------------------------------------------------------
 
+\section{Funcionamiento de Docker}
+
+\subsection{Arquitectura}
+Docker usa una arquitectura cliente servidor. El cliente de Docker se comunica con el Daemon de Docker para crear, ejecutar y distribuir los contenedores. 
+Tanto el cliente como el Daemon pueden estar en el mismo sistema o pueden conectarse remotamente. 
+Como Docker usa el kernel de Linux para su ejecucion, si el sistema operativo del sistema no es
+este, se deber a usar una pequeña capa extra en la arquitectura de tipo VM (boot Docker) 
+para poder correr Docker en la maquina.
+
+\subsection{ Cliente de Docker}
+Es la principal interfaz de usuario para Docker. Acepta los comandos del usuario y se comunica con el Daemon de Docker.
+
+\subsection{ Imagenes de Docker (Docker Images)}
+Las imagenes de Docker son plantillas de solo lectura, que nos permitiran crear contenedores basados en su configuracion.
+
+\subsection{ Registros de Docker (Docker Registries))}
+Los registros de Docker guardan las imagenes.  Estos son repositorios publicos o privados donde se pueden subir o descargar imagenes. Seríıa similar a GitHub para imagenes de Docker (Docker Hub).
+
+
+
+\section{Creacion de Imagenes}
+Como se comenta en el punto anterior, las imagenes de Docker son las plantillas para poder levantar los contenedores. Por eso la importancia de saber crear imagenes y personalizarlas ya que solo permiten lectura y los cambios que hagamos en los contenedores no se veran reflejados en  estas.
+\\
+La manera mas sencilla de crear una imagen es descargarla del Docker Hub con el comando explicado anteriormente:
+\\
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=14cm]{./IMAGENES/foto3} 
+		
+	\end{center}
+\end{figure}
+
+Este comando nos permite descargar una imagen en una version concreta o tag dependiendo de nuestras necesidades. Por defecto, si no se pone nada, descargara la ultima.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=14cm]{./IMAGENES/foto4}
+		
+	\end{center}
+\end{figure}
+
+En la figuras podemos apreciar como se descarga la ultima version de la imagen de MongoDB y nos genera la imagen.
+Una vez obtenida la imagen se pasara a levantar el contenedor para poder ejecutar el servicio con otro de los comandos explicados.
+
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=14cm]{./IMAGENES/foto5}
+		
+	\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=14cm]{./IMAGENES/foto6}
+		
+	\end{center}
+\end{figure}
+
+En la figuras 2.4 se puede apreciar como utilizando el comando docker ps que permite ver que contenedores estan levantados, no hay ninguno (a) y como al inicializar con el comando docker run mongo levanta el servicio (b) y esta vez sí aparece el contenedor
+(c).
+
+
+La segunda manera de crear y personalizar imagenes es mediante un  DockerFile, que es un documento de texto donde se encuentran los comandos que se deben ejecutar para generar nuestra imagen.
+
+El comando docker build comunica al Daemon de Docker que debe de leer el DockerFile del directorio actual y seguir las instrucciones linea por linea para la creacion de nuestra imagen. Este proceso va pintando los resultados por pantalla y generando imagenes intermedias para obtener asi  una cache que nos permitira en caso de errores, una vez corregido el DockerFile, continuar desde el punto conflictivo.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=14cm]{./IMAGENES/foto7}
+		
+	\end{center}
+\end{figure}
+
+Aqui tenemos un ejemplo sencillo de DockerFile que nos servira para explicar de una manera rapida como crearlos.
+
+FROM indica la imagen base que va a utilizar para seguir futuras instrucciones. Buscara si la imagen se encuentra localmente, en caso de que no, la descargara. En nuestro ejemplo utiliza la ultima version de la imagen docker/whalesay. 
+
+\section{Docker Compose}
+Docker Compose es un orquestador que nos permite ejecutar aplicaciones que utilicen varios contenedores a la vez. Se creara un archivo docker-compose.yml donde se configuraran todos los servicios necesarios para nuestra aplicacion. Una vez ejecutado este archivo nos generara todas las imagenes y con estas los contenedores especificados a la 
+vez que arrancara la aplicacion.
+\\
+Los comandos que se utilizaran seran similares a los utilizados en la creaci on de imagenes.
+\\
+Para ejecutar el servicio y levantar todos los contenedores.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=14cm]{./IMAGENES/foto8}
+		
+	\end{center}
+\end{figure}
+
+Para detener el servicio y detener los contenedores.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=14cm]{./IMAGENES/foto9}
+		
+	\end{center}
+\end{figure}
+
+
+
+
+
 %% CONCLUSIONES------------------------------------------------------------------------------------------------------------
 \section{Conclusiones}\label{sec:6}
 
@@ -131,6 +238,8 @@ Los contenedores de aplicaciones “empaquetan” los recursos necesarios para e
 
 
 %% ----------------------------------------------------------------------------------------------------------------------------------
+
+
 
 %% AUTORES  ------------------------------------------------------------------------------------------------------------
 
